@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phiếu lương - Công Ty CP Frit Huế</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Segoe UI,Arial,sans-serif;background:#f0f2f5;padding:20px;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.lock-box{background:white;border-radius:16px;padding:40px;max-width:400px;width:100%;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
+.lock-box h2{color:#1a365d;margin-bottom:8px}
+.lock-box p{color:#666;margin-bottom:20px;font-size:14px}
+.lock-box input{width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;font-size:16px;text-align:center;margin-bottom:12px}
+.lock-box input:focus{border-color:#2b6cb0;outline:none}
+.lock-box button{background:#2b6cb0;color:white;border:none;padding:12px 32px;border-radius:8px;font-size:16px;cursor:pointer;font-weight:600;width:100%}
+.lock-box button:hover{background:#1a4d8c}
+.lock-box .err{color:#e53e3e;font-size:14px;margin-top:8px;display:none}
+.salary{max-width:600px;width:100%;margin:0 auto}
+.salary .header{text-align:center;margin-bottom:24px}
+.salary .header h1{color:#2b6cb0;font-size:18px;margin-bottom:4px}
+.salary .header h2{color:#1a365d;font-size:16px}
+.salary .info{margin-bottom:16px;font-size:14px;color:#333}
+.salary table{width:100%;border-collapse:collapse;margin-bottom:20px}
+.salary th{background:#2b6cb0;color:white;padding:10px 12px;text-align:left;font-size:14px}
+.salary td{padding:10px 12px;border-bottom:1px solid #e2e8f0;font-size:14px}
+.salary tr:last-child td{background:#ebf8ff;font-weight:700}
+.salary td:last-child{text-align:right}
+.salary .note{font-size:12px;color:#888;text-align:center;margin-top:16px}
+.card{background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
+</style>
+</head>
+<body>
+<div id="lockScreen" class="lock-box">
+<h2>🔒 Phiếu lương bảo mật</h2>
+<p>Công Ty CP Frit Huế</p>
+<p style="font-size:13px;color:#888">Nhập mật khẩu để xem (ngày tháng năm sinh, ví dụ: 26051992)</p>
+<input type="password" id="pwd" placeholder="Nhập mật khẩu..." onkeypress="if(event.key==='Enter')unlock()"/>
+<button onclick="unlock()">Mở phiếu lương</button>
+<div class="err" id="err">❌ Sai mật khẩu</div>
+</div>
+<div id="content" class="salary" style="display:none"></div>
+<script>
+var D="eyJjb21wYW55IjogIkPDtG5nIFR5IENQIEZyaXQgSHXhur8iLCAidGhhbmciOiAiMDUvMjAyNiIsICJtYSI6ICJOVjAwMSIsICJ0ZW4iOiAiVHLGsMahbmcgbkjGsCBWaeG7h3QiLCAiaXRlbXMiOiBbeyJsYWJlbCI6ICJMdW9uZ0NvQmFuIiwgInZhbHVlIjogIjE1LjAwMC4wMDAiLCAiYm9sZCI6IGZhbHNlfSwgeyJsYWJlbCI6ICJQaHVDYXAiLCAidmFsdWUiOiAiMi4wMDAuMDAwIiwgImJvbGQiOiBmYWxzZX0sIHsibGFiZWwiOiAiQkhYSCIsICJ2YWx1ZSI6ICIxLjIwMC4wMDAiLCAiYm9sZCI6IGZhbHNlfSwgeyJsYWJlbCI6ICJCSFlUIiwgInZhbHVlIjogIjIyNS4wMDAiLCAiYm9sZCI6IGZhbHNlfSwgeyJsYWJlbCI6ICJUaHVlVE5DTiIsICJ2YWx1ZSI6ICI1MDAuMDAwIiwgImJvbGQiOiBmYWxzZX0sIHsibGFiZWwiOiAiVGh1Y05oYW4iLCAidmFsdWUiOiAiMTUuMDc1LjAwMCIsICJib2xkIjogdHJ1ZX1dfQ==";
+var H="fb3251fbfe813e1c9ccff655dc5e07bc8c49be40988f14e8acfe2508300fcad7";
+async function sha256(m){var b=new TextEncoder().encode(m);var h=await crypto.subtle.digest('SHA-256',b);return Array.from(new Uint8Array(h)).map(x=>x.toString(16).padStart(2,'0')).join('')}
+async function unlock(){
+var p=document.getElementById('pwd').value;
+var h=await sha256(p);
+if(h===H){
+var j=JSON.parse(decodeURIComponent(escape(atob(D))));
+var s='<div class="card"><div class="header"><h1>'+j.company+'</h1><h2>BẢNG CHI TIẾT TIỀN LƯƠNG - THÁNG '+j.thang+'</h2></div>';
+s+='<div class="info"><b>Mã NV:</b> '+j.ma+' &nbsp; <b>Họ tên:</b> '+j.ten+'</div>';
+s+='<table><tr><th>Khoản mục</th><th>Số tiền (VNĐ)</th></tr>';
+j.items.forEach(function(i){
+var st=i.bold?'font-weight:700':'';
+s+='<tr><td style="'+st+'">'+i.label+'</td><td style="'+st+'">'+i.value+'</td></tr>';
+});
+s+='</table><div class="note">Đây là phiếu lương bảo mật. Vui lòng không chia sẻ cho người khác.</div></div>';
+document.getElementById('content').innerHTML=s;
+document.getElementById('content').style.display='block';
+document.getElementById('lockScreen').style.display='none';
+}else{
+document.getElementById('err').style.display='block';
+setTimeout(function(){document.getElementById('err').style.display='none'},2000);
+}
+}
+</script>
+</body>
+</html>
