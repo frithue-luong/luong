@@ -41,7 +41,7 @@ body{font-family:Segoe UI,Arial,sans-serif;background:#f0f2f5;padding:20px;min-h
 <div id="content" class="salary" style="display:none"></div>
 <script>
 var D="eyJjb21wYW55IjogIkPDtG5nIFR5IENQIEZyaXQgSHXhur8iLCAidGhhbmciOiAiMDUvMjAyNiIsICJtYSI6ICJGMDQ4Ny0xIiwgInRlbiI6ICJQaGFuIFbEg24gSOG7o3AgLUEiLCAiaXRlbXMiOiBbeyJsYWJlbCI6ICJMdW9uZ0NvQmFuIiwgInZhbHVlIjogIjE1LjAwMC4wMDAiLCAiYm9sZCI6IGZhbHNlfSwgeyJsYWJlbCI6ICJQaHVDYXAiLCAidmFsdWUiOiAiMS4wMDAuMDAwIiwgImJvbGQiOiBmYWxzZX0sIHsibGFiZWwiOiAiQkhYSCIsICJ2YWx1ZSI6ICIxLjQ0MC4wMDAiLCAiYm9sZCI6IGZhbHNlfSwgeyJsYWJlbCI6ICJCSFlUIiwgInZhbHVlIjogIjI3MC4wMDAiLCAiYm9sZCI6IGZhbHNlfSwgeyJsYWJlbCI6ICJUaHVjTmhhbiIsICJ2YWx1ZSI6ICIxNy43MTAuMDAwIiwgImJvbGQiOiB0cnVlfV19";
-var H="8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92";
+var H="6e533b96149930db8ff9da9aca5f6714e77a214c90b157ad788b3dc29536743a";
 async function sha256(m){var b=new TextEncoder().encode(m);var h=await crypto.subtle.digest('SHA-256',b);return Array.from(new Uint8Array(h)).map(x=>x.toString(16).padStart(2,'0')).join('')}
 async function unlock(){
 var p=document.getElementById('pwd').value;
