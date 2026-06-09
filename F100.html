@@ -41,7 +41,7 @@ body{font-family:Segoe UI,Arial,sans-serif;background:#f0f2f5;padding:20px;min-h
 <div id="content" class="salary" style="display:none"></div>
 <script>
 var D="eyJjb21wYW55IjogIkPDtG5nIFR5IENQIEZyaXQgSHXhur8iLCAidGhhbmciOiAiMDUvMjAyNiIsICJtYSI6ICJGMTAwIiwgInRlbiI6ICJWxINuIMSQ4bupYyBC4buVbiIsICJpdGVtcyI6IFt7ImxhYmVsIjogIkx1b25nQ29CYW4iLCAidmFsdWUiOiAiMTguMDAwLjAwMCIsICJib2xkIjogZmFsc2V9LCB7ImxhYmVsIjogIlBodUNhcCIsICJ2YWx1ZSI6ICIzLjAwMC4wMDAiLCAiYm9sZCI6IGZhbHNlfSwgeyJsYWJlbCI6ICJCSFhIIiwgInZhbHVlIjogIjEuNDQwLjAwMCIsICJib2xkIjogZmFsc2V9LCB7ImxhYmVsIjogIkJIWVQiLCAidmFsdWUiOiAiMjcwLjAwMCIsICJib2xkIjogZmFsc2V9LCB7ImxhYmVsIjogIlRodWVUTkNOIiwgInZhbHVlIjogIjEuMDAwLjAwMCIsICJib2xkIjogZmFsc2V9LCB7ImxhYmVsIjogIlRodWNOaGFuIiwgInZhbHVlIjogIjE4LjI5MC4wMDAiLCAiYm9sZCI6IHRydWV9XX0=";
-var H="8c826dbd41b15fdb00cf71d4a9794e9b1956a8d7ea241a985a81b9bae9fd990f";
+var H="4b8093440d26e81832208ade413351db0e8f9de0d94fd238d12e9862456b099b";
 async function sha256(m){var b=new TextEncoder().encode(m);var h=await crypto.subtle.digest('SHA-256',b);return Array.from(new Uint8Array(h)).map(x=>x.toString(16).padStart(2,'0')).join('')}
 async function unlock(){
 var p=document.getElementById('pwd').value;
